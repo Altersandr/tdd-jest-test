@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: {
     capitalize: "./src/capitalize.js",
     calculator: "./src/calculator.js",
