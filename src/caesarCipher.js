@@ -28,23 +28,38 @@ const alphabet = [
 ];
 
 const caesarCipher = (string, number) => {
-  const stringArr = string.toLowerCase().split("");
+  const stringArr = string.split("");
   return shift(stringArr, number);
 };
 
 const shift = (array, number) => {
   if (number > 26) number = number % 26;
   let result = [];
+  let toUpper = [];
   let reg = /[^a-zA-Z\s]|\s/;
   array.forEach((letter) => {
     if (reg.test(letter)) result.push(letter);
     else {
+      if (/[A-Z]/.test(letter)) toUpper.push(array.indexOf(letter));
+      //   console.log(array);
+      //   console.log(array.indexOf(letter));
       let index = alphabet.indexOf(letter);
       if (index + number < 0) result.push(alphabet[(26 % number) + index]);
       result.push(alphabet[index + number]);
     }
   });
-  return result.join("");
+  let final;
+  //   console.log(toUpper);
+  //   result = result.join("");
+  toUpper.forEach((element) => {
+    console.log(element);
+
+    final = result.splice(element, 1, result[element].toUpperCase());
+    // final = result.slice(0, element) + result.slice(element);
+    // console.log(result.slice(element));
+    // console.log(result.slice(0, element));
+  });
+  return console.log(final);
 };
 
 // console.log(
@@ -54,6 +69,6 @@ const shift = (array, number) => {
 //   )
 // );
 
-console.log(caesarCipher("hello", -26));
+console.log(caesarCipher("Hello", 5));
 
-module.exports = caesarCipher;
+// module.exports = caesarCipher;
