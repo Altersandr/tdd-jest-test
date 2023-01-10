@@ -1,5 +1,6 @@
 const capitalize = require("./src/capitalize");
 const calculator = require("./src/calculator");
+const reverse = require("./src/reverseString");
 
 test("returns a string with a capital letter", () => {
   expect(capitalize("project")).toBe("Project");
@@ -27,4 +28,12 @@ test("divides one number by other", () => {
 
 test("multiplies two numbers", () => {
   expect(calculator.multiply(5, 2)).toBe(10);
+});
+
+test("reverses a string", () => {
+  expect(reverse("hello")).toBe("olleh");
+});
+
+test("reverses a string made off more than 1 word", () => {
+  expect(reverse("the odin project")).toBe("tcejorp nido eht");
 });
