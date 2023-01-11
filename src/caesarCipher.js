@@ -33,6 +33,7 @@ const caesarCipher = (string, number) => {
 };
 
 const shift = (array, number) => {
+  console.log(array);
   if (number > 26) number = number % 26;
   let i = 0;
   let result = [];
@@ -42,42 +43,18 @@ const shift = (array, number) => {
     if (reg.test(letter)) result.push(letter);
     else {
       if (/[A-Z]/.test(letter)) toUpper.push(i);
-      //   console.log(array.indexOf(letter));
       let index = alphabet.indexOf(letter.toLowerCase());
+      if (index + number > 25) index = index - 26;
       if (index + number < 0) result.push(alphabet[(26 % number) + index]);
       result.push(alphabet[index + number]);
     }
     i++;
   });
-  let final = [];
-  let preFinal = [];
-  console.log(toUpper);
-  //   result = result.join("");
-  toUpper.forEach((element) => {
-    // console.log(element);
 
-    final =
-      result.join("").slice(0, result.join("").charAt(element)) +
-      result.join("").charAt(element).toUpperCase() +
-      result.join("").slice(element + 1);
-    // preFinal = final + result.slice(element + 1);
-    // result.slice(0, element).join("") +
-    // result.join("").charAt(element).toUpperCase() +
-    // result.slice(element + 1).join("");
-    // final = final.toUpperCase();
-    // console.log(result.slice(element));
-    // console.log(result.slice(0, element));
+  toUpper.forEach((element) => {
+    result[element] = result[element].toUpperCase();
   });
-  return console.log(final);
+  return result.join("");
 };
 
-// console.log(
-//   caesarCipher(
-//     "It's my first time writing tests with jest, pretty exciting stuff 404!!!",
-//     5
-//   )
-// );
-
-console.log(caesarCipher("HEllO", 5));
-
-// module.exports = caesarCipher;
+module.exports = caesarCipher;

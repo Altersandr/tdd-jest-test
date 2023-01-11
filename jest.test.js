@@ -51,7 +51,7 @@ test("takes an array of numbers and returns an object with the following propert
 });
 
 test("shifts the text by the given amount encrypting it", () => {
-  expect(cipher("Hello", 5)).toBe("mjqqt");
+  expect(cipher("hello", 5)).toBe("mjqqt");
 });
 
 test("makes sure it shifts correctly even if the number is higher than the alphabet size", () => {
@@ -62,11 +62,19 @@ test("if a negative value (no lower than -26, otherwise breaks) is provided it s
   expect(cipher("hello", -26)).toBe("hello");
 });
 
-test("if the string contains whitespace, numbers or symbols it doens't break", () => {
+test("if the string contains whitespace, numbers or symbols it doesn't break", () => {
   expect(
     cipher(
       "It's my first time writing tests with jest, pretty exciting stuff 404!!!",
-      5
+      20
     )
-  ).toBe("ny'x r knwxy ynrj wnynsl yjxyx nym ojxy, uwjyy jhnynsl xyzkk 404!!!");
+  ).toBe(
+    "Cn'm gs zclmn ncgy qlcncha nymnm qcnb dymn, jlynns yrwcncha mnozz 404!!!"
+  );
+});
+
+test("supports case sensitive values", () => {
+  expect(cipher("I'm an aspiring Web Developer", 20)).toBe(
+    "C'g uh umjclcha Qyv Xypyfijyl"
+  );
 });
